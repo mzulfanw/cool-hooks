@@ -7,9 +7,7 @@ function App () {
   return (
     <UserContext.Provider value={userInfo.user}>
       <div className='App'>
-        <Layout>
-          <Info />
-        </Layout>
+
       </div>
     </UserContext.Provider>
   );
