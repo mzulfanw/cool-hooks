@@ -1,25 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { userInfo, UserContext } from './context/UserContext'
 import './App.css'
+import Layout from './core/Layout';
+import Info from './component/Info';
 function App () {
-  const [count, setCount] = useState(0)
-
-  const increment = (e) => {
-    e.preventDefault();
-    setCount(count + 1)
-  }
-
-  const decrement = (e) => {
-    e.preventDefault()
-    setCount(count - 1)
-  }
-
   return (
-    <div className='App'>
-      <button onClick={decrement}>Decrement</button>
-      {count}
-      <button onClick={increment}>Increment</button>
-
-    </div>
+    <UserContext.Provider value={userInfo.user}>
+      <div className='App'>
+        <Layout>
+          <Info />
+        </Layout>
+      </div>
+    </UserContext.Provider>
   );
 }
 
