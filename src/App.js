@@ -1,15 +1,27 @@
-import React from 'react'
-import { userInfo, UserContext } from './context/UserContext'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import './App.css'
-import Layout from './core/Layout';
-import Info from './component/Info';
 function App () {
-  return (
-    <UserContext.Provider value={userInfo.user}>
-      <div className='App'>
+  const [data, setData] = useState([])
 
-      </div>
-    </UserContext.Provider>
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(res => {
+        setData(res.data)
+      })
+    return () => {
+      setData([])
+    }
+  }, [])
+
+  return (
+    <div className='App'>
+      {data.map((val, i) => (
+        <div key={i}>
+          <p >{val.name}</p>
+        </div>
+      ))}
+    </div>
   );
 }
 
